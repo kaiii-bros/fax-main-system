@@ -19,9 +19,9 @@
   ],
   "dukungan": [
     {
-      "nama": "Saweria",
-      "url": "https://saweria.co/USERNAME",
-      "aktif": false,
+      "nama": "Linktree",
+      "url": "https://linktr.ee/Faxxmax",
+      "aktif": true,
       "catatan": "Ganti USERNAME dengan akunmu, lalu ubah aktif menjadi true."
     },
     {
@@ -30,5 +30,6 @@
       "aktif": true,
       "catatan": "Ganti USERNAME dengan akunmu, lalu ubah aktif menjadi true."
     }
+    
   ]
 }
