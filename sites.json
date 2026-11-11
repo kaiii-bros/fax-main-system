@@ -1,0 +1,34 @@
+{
+  "menu": [
+    {
+      "judul": "Video viewer",
+      "deskripsi": "Putar video dari file atau link, lengkap dengan daftar putar dan subtitle.",
+      "url": "https://faxweb.vercel.app",
+      "status": "live"
+    },
+    {
+      "judul": "Website berikutnya",
+      "deskripsi": "Slot ini disiapkan untuk website baru.",
+      "status": "soon"
+    },
+    {
+      "judul": "Website lainnya",
+      "deskripsi": "Slot ini disiapkan untuk website baru.",
+      "status": "soon"
+    }
+  ],
+  "dukungan": [
+    {
+      "nama": "Saweria",
+      "url": "https://saweria.co/USERNAME",
+      "aktif": false,
+      "catatan": "Ganti USERNAME dengan akunmu, lalu ubah aktif menjadi true."
+    },
+    {
+      "nama": "Sociabuzz",
+      "url": "https://sociabuzz.com/USERNAME/tribe",
+      "aktif": false,
+      "catatan": "Ganti USERNAME dengan akunmu, lalu ubah aktif menjadi true."
+    }
+  ]
+}
