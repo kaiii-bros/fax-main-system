@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAX Main Web – FAX Main Menu</title>
+<meta name="description" content="FAX Main Menu – One Place, Multiple Websites. Pusat navigasi utama untuk mengakses berbagai website lain dalam satu tempat.">
+<!-- Setelah pindah ke domain .my.id, ganti URL di bawah dengan domain barumu -->
+<link rel="canonical" href="https://NAMAKAMU.my.id/">
+<meta property="og:title" content="FAX Main Web">
+<meta property="og:description" content="FAX Main Menu – One Place, Multiple Websites.">
+<meta property="og:url" content="https://NAMAKAMU.my.id/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E▶️%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #eaf1f7;
+    --surface: #ffffff;
+    --ink: #0e2238;
+    --muted: #5a6b7d;
+    --line: #c9d6e2;
+    --accent: #1f46e5;
+    --accent-ink: #ffffff;
+    --live-bg: #bfebd3;
+    --live-ink: #0b4a2a;
+    --soon-bg: #dde5ee;
+    --soon-ink: #4a5a6b;
+    --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+    --body: "Instrument Sans", "Segoe UI", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1b2a;
+      --surface: #16263a;
+      --ink: #e8eff7;
+      --muted: #9db0c4;
+      --line: #2a3d54;
+      --accent: #7f9bff;
+      --accent-ink: #0f1b2a;
+      --live-bg: #1d5a3b;
+      --live-ink: #c8f3dc;
+      --soon-bg: #22364d;
+      --soon-ink: #9db0c4;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1b2a;
+    --surface: #16263a;
+    --ink: #e8eff7;
+    --muted: #9db0c4;
+    --line: #2a3d54;
+    --accent: #7f9bff;
+    --accent-ink: #0f1b2a;
+    --live-bg: #1d5a3b;
+    --live-ink: #c8f3dc;
+    --soon-bg: #22364d;
+    --soon-ink: #9db0c4;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+  .wrap { width: min(100% - 2.5rem, 46rem); margin-inline: auto; }
+
+  /* Bar atas */
+  .topbar { display: flex; align-items: center; justify-content: space-between; padding-block: 1.5rem; }
+  .brand { font-family: var(--display); font-weight: 800; font-size: 1.35rem; letter-spacing: -0.02em; text-decoration: none; }
+  .brand i { font-style: normal; color: var(--accent); }
+  .theme-btn {
+    font: inherit; font-size: .9rem; font-weight: 500;
+    color: var(--ink); background: transparent;
+    border: 1.5px solid var(--line); border-radius: 999px;
+    padding: .4rem .9rem; cursor: pointer;
+  }
+  .theme-btn:hover { border-color: var(--ink); }
+
+  /* Hero: judul + garis waktu ala pemutar video */
+  .hero { padding-block: 3.5rem 2.5rem; }
+  h1 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(2.6rem, 8.5vw, 4.75rem);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    margin: 0 0 1.25rem;
+    max-width: 14ch;
+  }
+  .hero p { margin: 0 0 1.1rem; color: var(--muted); max-width: 56ch; }
+  .hero p.tagline { font-family: var(--display); font-weight: 700; font-size: 1.25rem; letter-spacing: -0.01em; color: var(--ink); margin-top: 1.6rem; }
+  .hero .scrub { margin-top: 2rem; }
+
+  .scrub { position: relative; height: 6px; background: var(--line); border-radius: 99px; max-width: 28rem; }
+  .scrub::before {
+    content: ""; position: absolute; inset: 0 auto 0 0; width: 100%;
+    background: var(--accent); border-radius: inherit;
+    transform-origin: left; transform: scaleX(.38);
+    animation: play 2.4s cubic-bezier(.3,.7,.2,1) .2s both;
+  }
+  .scrub::after {
+    content: ""; position: absolute; top: 50%; left: 38%;
+    width: 16px; height: 16px; margin: -8px 0 0 -8px;
+    background: var(--accent); border: 3px solid var(--bg); border-radius: 50%;
+    animation: knob 2.4s cubic-bezier(.3,.7,.2,1) .2s both;
+  }
+  @keyframes play { from { transform: scaleX(0); } to { transform: scaleX(.38); } }
+  @keyframes knob { from { left: 0; } to { left: 38%; } }
+
+  /* Daftar menu */
+  .menu-title { font-family: var(--display); font-weight: 700; font-size: 1.1rem; margin: 2.5rem 0 .75rem; }
+  .menu { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; }
+  .item {
+    display: grid; grid-template-columns: 2.25rem 1fr auto; gap: 1rem; align-items: center;
+    background: var(--surface);
+    border: 1.5px solid var(--line);
+    border-radius: 14px;
+    padding: 1.1rem 1.25rem;
+    text-decoration: none;
+    transition: border-color .15s, transform .15s;
+  }
+  a.item:hover { border-color: var(--accent); transform: translateX(4px); }
+  .key {
+    display: grid; place-items: center;
+    width: 2.25rem; height: 2.25rem;
+    border: 1.5px solid var(--line); border-radius: 8px;
+    font-family: var(--display); font-weight: 700; font-size: .95rem; color: var(--muted);
+  }
+  a.item:hover .key { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .item h2 { font-family: var(--display); font-weight: 700; font-size: 1.25rem; letter-spacing: -0.01em; margin: 0; }
+  .item p { margin: .15rem 0 0; color: var(--muted); font-size: .97rem; }
+  .chip { font-size: .8rem; font-weight: 600; padding: .25rem .65rem; border-radius: 999px; white-space: nowrap; }
+  .chip.live { background: var(--live-bg); color: var(--live-ink); }
+  .chip.soon { background: var(--soon-bg); color: var(--soon-ink); }
+  .item.disabled { opacity: .7; cursor: default; }
+
+  .hint { margin: 1.5rem 0 0; color: var(--muted); font-size: .92rem; }
+  kbd {
+    font-family: var(--body); font-weight: 600; font-size: .85em;
+    border: 1.5px solid var(--line); border-bottom-width: 3px; border-radius: 6px;
+    padding: .05rem .4rem; background: var(--surface);
+  }
+
+  footer { margin-top: 4rem; padding-block: 1.75rem 2.5rem; border-top: 1.5px solid var(--line); color: var(--muted); font-size: .92rem; }
+
+  @media (max-width: 30rem) {
+    .item { grid-template-columns: 2.25rem 1fr; }
+    .chip { grid-column: 2; justify-self: start; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .scrub::before, .scrub::after { animation: none; }
+    a.item:hover { transform: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  /* ===== ANIMASI ===== */
+  .wrap { position: relative; z-index: 1; }
+
+  /* Latar: tiga gumpalan warna yang melayang pelan */
+  .bg { position: fixed; inset: 0; overflow: hidden; z-index: 0; pointer-events: none; }
+  .blob { position: absolute; border-radius: 50%; filter: blur(70px); opacity: .5; will-change: transform; }
+  .b1 { width: 26rem; height: 26rem; top: -8rem; right: -6rem; background: color-mix(in srgb, var(--accent) 55%, transparent); animation: drift1 16s ease-in-out infinite alternate; }
+  .b2 { width: 22rem; height: 22rem; bottom: -6rem; left: -7rem; background: color-mix(in srgb, #2fd1a0 45%, transparent); animation: drift2 19s ease-in-out infinite alternate; }
+  .b3 { width: 16rem; height: 16rem; top: 45%; left: 55%; background: color-mix(in srgb, #ff8a5c 35%, transparent); animation: drift3 22s ease-in-out infinite alternate; }
+  @keyframes drift1 { to { transform: translate(-6rem, 7rem) scale(1.15); } }
+  @keyframes drift2 { to { transform: translate(8rem, -6rem) scale(1.1); } }
+  @keyframes drift3 { to { transform: translate(-9rem, 4rem) scale(.85); } }
+
+  /* Judul: kata muncul satu per satu dari bawah */
+  .js h1:not(.ready) { visibility: hidden; }
+  h1 .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .12em; margin-bottom: -.12em; }
+  h1 .w > span { display: inline-block; transform: translateY(110%); animation: rise .8s cubic-bezier(.2,.8,.2,1) forwards; animation-delay: calc(var(--i) * 110ms + 100ms); }
+  @keyframes rise { to { transform: none; } }
+
+  /* Muncul saat masuk layar (paragraf & menu) */
+  .js .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); transition-delay: var(--d, 0ms); }
+  .js .reveal.in { opacity: 1; transform: none; }
+
+  /* Garis waktu: bergerak maju-mundur terus-menerus */
+  .scrub::before { animation: loopbar 5s ease-in-out infinite alternate; }
+  .scrub::after  { animation: loopknob 5s ease-in-out infinite alternate; }
+  @keyframes loopbar  { from { transform: scaleX(.12); } to { transform: scaleX(.88); } }
+  @keyframes loopknob { from { left: 12%; } to { left: 88%; } }
+
+  /* Tagline mengetik */
+  .tagline .t-off { visibility: hidden; }
+  .tagline.typing .t-on::after { content: ""; display: inline-block; width: 2px; height: 1em; margin-left: 2px; vertical-align: -.12em; background: var(--accent); animation: blink .8s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* Kartu menu: cahaya mengikuti kursor + ikon membesar */
+  a.item { position: relative; overflow: hidden; }
+  a.item::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .25s;
+    background: radial-gradient(18rem circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%);
+  }
+  a.item:hover::before, a.item:focus-visible::before { opacity: 1; }
+  a.item > * { position: relative; }
+  a.item .key { transition: transform .25s cubic-bezier(.3,1.6,.5,1), background .15s, color .15s, border-color .15s; }
+  a.item:hover .key { transform: scale(1.12) rotate(-6deg); }
+  a.item:active { transform: scale(.985); }
+
+  /* Chip "Siap dipakai": titik berdenyut */
+  .chip.live::before { content: ""; display: inline-block; width: .5rem; height: .5rem; margin-right: .4rem; border-radius: 50%; background: currentColor; animation: pulse 1.8s ease-out infinite; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, currentColor 55%, transparent); } 80%, 100% { box-shadow: 0 0 0 .5rem transparent; } }
+
+  /* Logo & tombol tema */
+  .brand i { display: inline-block; transition: transform .3s cubic-bezier(.3,1.6,.5,1); }
+  .brand:hover i { transform: translateY(-2px) rotate(-4deg); }
+  .theme-btn { transition: border-color .15s, transform .2s; }
+  .theme-btn:active { transform: scale(.94); }
+
+  /* Hormati pengaturan "kurangi gerakan" */
+  @media (prefers-reduced-motion: reduce) {
+    .blob, .scrub::before, .scrub::after, .chip.live::before { animation: none; }
+    .scrub::before { transform: scaleX(.38); }
+    .scrub::after { left: 38%; }
+    h1 .w > span { animation: none; transform: none; }
+    .js .reveal { opacity: 1; transform: none; transition: none; }
+    a.item:hover .key { transform: none; }
+  }
+
+  /* Menu disembunyikan sampai data dari API (atau cadangan) siap, supaya tidak berkedip */
+  .js .menu:not(.ready) { visibility: hidden; }
+</style>
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>
+<div class="wrap">
+  <header class="topbar">
+    <a class="brand" href="/">FAX <i>Main Web</i></a>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Ganti tema terang atau gelap">Ganti tema</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>FAX Main Menu</h1>
+      <p>Selamat datang di FAX Main Menu, pusat navigasi utama yang dirancang untuk memudahkan kamu mengakses berbagai website lain yang telah dibuat dalam satu tempat.</p>
+      <p>Melalui FAX Main Menu, kamu dapat menemukan berbagai pilihan website dengan mudah, cepat, dan praktis tanpa harus mencari satu per satu. Website ini berfungsi sebagai halaman utama yang menghubungkan berbagai platform dan proyek website lainnya dalam satu tampilan yang sederhana, modern, dan mudah digunakan.</p>
+      <p class="tagline">FAX Main Menu – One Place, Multiple Websites.</p>
+      <p>Jelajahi berbagai website lainnya dengan lebih mudah melalui FAX Main Menu!</p>
+      <div class="scrub" aria-hidden="true"></div>
+    </section>
+
+    <h2 class="menu-title">Menu</h2>
+    <ul class="menu" id="menu">
+      <!--
+        MENU CADANGAN. Menu asli dimuat dari /api/menu (data dari sites.json).
+        Isi di bawah hanya tampil kalau API tidak bisa dihubungi,
+        misalnya saat file ini dibuka langsung tanpa server.
+        Untuk menambah/mengubah menu, edit sites.json.
+      -->
+      <li>
+        <a class="item" href="https://faxweb.vercel.app" data-key="1">
+          <span class="key">1</span>
+          <div>
+            <h2>Video viewer</h2>
+            <p>Putar video dari file atau link, lengkap dengan daftar putar dan subtitle.</p>
+          </div>
+          <span class="chip live">Siap dipakai</span>
+        </a>
+      </li>
+      <li>
+        <div class="item disabled">
+          <span class="key">2</span>
+          <div>
+            <h2>Website berikutnya</h2>
+            <p>Slot ini disiapkan untuk website baru.</p>
+          </div>
+          <span class="chip soon">Segera hadir</span>
+        </div>
+      </li>
+      <li>
+        <div class="item disabled">
+          <span class="key">3</span>
+          <div>
+            <h2>Website lainnya</h2>
+            <p>Slot ini disiapkan untuk website baru.</p>
+          </div>
+          <span class="chip soon">Segera hadir</span>
+        </div>
+      </li>
+    </ul>
+
+    <p class="hint">Tekan <kbd>1</kbd>–<kbd>9</kbd> di keyboard untuk membuka menu dengan cepat.</p>
+  </main>
+
+  <footer>
+    © 2026 Faxmaxxing
+  </footer>
+</div>
+
+<script>
+  // Pintasan keyboard: tekan angka untuk membuka menu yang aktif
+  document.addEventListener('keydown', function (e) {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    var tag = (e.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea') return;
+    var link = document.querySelector('a.item[data-key="' + e.key + '"]');
+    if (link) link.click();
+  });
+
+  // Tema terang/gelap: ikut sistem, bisa diganti manual
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('faxweb-theme');
+    if (saved) root.setAttribute('data-theme', saved);
+  } catch (err) {}
+  document.getElementById('themeBtn').addEventListener('click', function () {
+    var isDark = root.getAttribute('data-theme') === 'dark' ||
+      (!root.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    var next = isDark ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('faxweb-theme', next); } catch (err) {}
+  });
+
+  // ===== ANIMASI =====
+  (function () {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Judul: pecah per kata
+    var h1 = document.querySelector('h1');
+    if (h1 && !reduce) {
+      var words = h1.textContent.trim().split(/\s+/);
+      h1.setAttribute('aria-label', h1.textContent.trim());
+      h1.innerHTML = words.map(function (w, i) {
+        return '<span class="w" aria-hidden="true"><span style="--i:' + i + '">' + w + '</span></span>';
+      }).join(' ');
+    }
+    if (h1) h1.classList.add('ready');
+
+    // Elemen yang muncul bertahap (dipakai juga oleh menu dinamis)
+    var io = null;
+    if ('IntersectionObserver' in window && !reduce) {
+      io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.15 });
+    }
+    window.faxReveal = function (els, start) {
+      [].slice.call(els).forEach(function (el, i) {
+        el.classList.add('reveal');
+        el.style.setProperty('--d', Math.min((start + i) * 90, 600) + 'ms');
+        if (io) io.observe(el); else el.classList.add('in');
+      });
+    };
+    window.faxReveal(document.querySelectorAll('.hero p, .scrub, .menu-title, .hint'), 0);
+
+    // Tagline mengetik
+    var tag = document.querySelector('.tagline');
+    if (tag && !reduce) {
+      var full = tag.textContent;
+      tag.setAttribute('aria-label', full);
+      tag.innerHTML = '<span class="t-on" aria-hidden="true"></span><span class="t-off" aria-hidden="true">' + full + '</span>';
+      var on = tag.querySelector('.t-on'), off = tag.querySelector('.t-off');
+      var n = 0;
+      setTimeout(function () {
+        tag.classList.add('typing');
+        var timer = setInterval(function () {
+          n++;
+          on.textContent = full.slice(0, n);
+          off.textContent = full.slice(n);
+          if (n >= full.length) {
+            clearInterval(timer);
+            setTimeout(function () { tag.classList.remove('typing'); }, 1600);
+          }
+        }, 32);
+      }, 900);
+    }
+
+    // Cahaya kartu mengikuti kursor
+    window.faxGlow = function (card) {
+      card.addEventListener('pointermove', function (e) {
+        var r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    };
+    document.querySelectorAll('a.item').forEach(function (card) { window.faxGlow(card); });
+  })();
+</script>
+<script>
+  // ===== MENU DINAMIS (data dari Python: /api/menu) =====
+  (function () {
+    var list = document.getElementById('menu');
+
+    function aman(u) {
+      return typeof u === 'string' && (/^https?:\/\//i.test(u) || (u.charAt(0) === '/' && u.charAt(1) !== '/'));
+    }
+
+    function buat(it) {
+      var live = it.status === 'live' && aman(it.url);
+      var li = document.createElement('li');
+      var el = document.createElement(live ? 'a' : 'div');
+      el.className = 'item' + (live ? '' : ' disabled');
+      if (live) {
+        el.href = it.url;
+        if (it.no >= 1 && it.no <= 9) el.setAttribute('data-key', String(it.no));
+      }
+      var key = document.createElement('span');
+      key.className = 'key';
+      key.textContent = String(it.no);
+      var box = document.createElement('div');
+      var h = document.createElement('h2');
+      h.textContent = it.judul;
+      var p = document.createElement('p');
+      p.textContent = it.deskripsi || '';
+      box.appendChild(h);
+      box.appendChild(p);
+      var chip = document.createElement('span');
+      chip.className = 'chip ' + (live ? 'live' : 'soon');
+      chip.textContent = it.label || (live ? 'Siap dipakai' : 'Segera hadir');
+      el.appendChild(key);
+      el.appendChild(box);
+      el.appendChild(chip);
+      li.appendChild(el);
+      return li;
+    }
+
+    function selesai() {
+      var items = list.querySelectorAll('li');
+      window.faxReveal(items, 5);
+      list.querySelectorAll('a.item').forEach(function (c) { window.faxGlow(c); });
+      list.classList.add('ready');
+    }
+
+    var ctrl = ('AbortController' in window) ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 3000);
+
+    fetch('/api/menu', { headers: { 'Accept': 'application/json' }, signal: ctrl ? ctrl.signal : undefined })
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function (d) {
+        if (!d || !Array.isArray(d.menu) || !d.menu.length) throw new Error('menu kosong');
+        list.textContent = '';
+        d.menu.forEach(function (it) { list.appendChild(buat(it)); });
+      })
+      .catch(function () { /* API tidak tersedia: pakai menu cadangan di HTML */ })
+      .then(function () { clearTimeout(timer); selesai(); });
+  })();
+</script>
+</body>
+</html>
